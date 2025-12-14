@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>株式会社鳥取こだわり野菜の会｜地域循環型農業をつなぐ</title>
+  <meta name="description" content="株式会社鳥取こだわり野菜の会は、鳥取の生産者が丁寧に育てた野菜を都市の食卓へつなぐ流通会社です。生産者と消費者のあいだで、持続可能な食と暮らしの循環を広げます。" />
+  <meta name="format-detection" content="telephone=no" />
+  <style>
+    /* =========
+      Minimal, self-contained static site (public/index.html)
+      Photos are placeholders by default. Replace later via CSS variables:
+        --hero-photo / --story-photo / --quality-photo
+      Example:
+        --hero-photo: url("/hero.jpg") center/cover no-repeat;
+    ========= */
+
+    :root{
+      --bg:#F6F2E8;
+      --bg2:#E9EFE1;
+      --green-900:#1F3A2E;
+      --green-700:#2F5D46;
+      --sand:#8A6A3D;
+      --text:#1B1B1B;
+      --radius:22px;
+      --shadow:0 10px 30px rgba(0,0,0,.10);
+      --ring:0 0 0 4px rgba(47,93,70,.18);
+
+      /* Photos */
+      --hero-photo: url("/hero.jpg") center/cover no-repeat;
+      --story-photo: url("/story.jpg") center/cover no-repeat;
+      --quality-photo: url("/quality.jpg") center/cover no-repeat;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--bg), var(--bg2));
+      line-height:1.6;
+    }
+    a{color:inherit}
+    .container{max-width:1120px; margin:0 auto; padding:0 18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:999px;
+      padding:12px 16px;
+      font-weight:800;
+      text-decoration:none;
+      border:1px solid rgba(31,58,46,.20);
+      background:rgba(47,93,70,.10);
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+      gap:10px;
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow:var(--shadow); background:rgba(47,93,70,.14)}
+    .btn:focus{outline:none; box-shadow:var(--ring)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(47,93,70,.95), rgba(31,58,46,.95));
+      color:white;
+      border-color:rgba(255,255,255,.25);
+    }
+    .btn.primary:hover{background:linear-gradient(135deg, rgba(47,93,70,1), rgba(31,58,46,1))}
+    header{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter:saturate(1.2) blur(10px);
+      background:rgba(246,242,232,.70);
+      border-bottom:1px solid rgba(31,58,46,.08);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:12px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px; min-width:240px}
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background:linear-gradient(135deg, rgba(47,93,70,.95), rgba(138,106,61,.85));
+      box-shadow:0 12px 28px rgba(0,0,0,.12);
+    }
+    .brandName{font-weight:900; color:var(--green-900); letter-spacing:.02em}
+    .links{display:flex; gap:18px; flex-wrap:wrap; justify-content:flex-end}
+    .links a{font-weight:800; opacity:.78; text-decoration:none}
+    .links a:hover{opacity:1; text-decoration:underline; text-underline-offset:6px}
+
+    /* Hero */
+    .hero{padding:28px 0 18px}
+    .heroGrid{display:grid; grid-template-columns:1.12fr .88fr; gap:18px; align-items:stretch}
+    .heroCopy{
+      border-radius:var(--radius);
+      padding:22px;
+      background:rgba(255,255,255,.70);
+      border:1px solid rgba(31,58,46,.10);
+      box-shadow:var(--shadow);
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-weight:900; font-size:12px; letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--green-900);
+      background:rgba(47,93,70,.10);
+      border:1px solid rgba(31,58,46,.15);
+      padding:8px 12px; border-radius:999px;
+    }
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--sand); box-shadow:0 0 0 3px rgba(138,106,61,.20)}
+    h1{margin:12px 0 10px; font-size:34px; line-height:1.2; color:var(--green-900)}
+    .lead{margin:0; font-size:15px; opacity:.90}
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .heroMedia{
+      border-radius:var(--radius);
+      min-height:320px;
+      background:
+        radial-gradient(900px 300px at 15% 10%, rgba(138,106,61,.18), transparent 60%),
+        linear-gradient(180deg, rgba(31,58,46,.12), rgba(31,58,46,.06)),
+        linear-gradient(135deg, rgba(47,93,70,.18), rgba(138,106,61,.12)),
+        var(--hero-photo);
+      border:1px solid rgba(31,58,46,.10);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .heroBadge{
+      position:absolute; left:16px; bottom:16px;
+      border-radius:16px;
+      background:rgba(246,242,232,.86);
+      border:1px solid rgba(31,58,46,.12);
+      padding:10px 12px;
+      font-size:12px;
+      font-weight:900;
+      color:var(--green-900);
+    }
+
+    section{padding:34px 0}
+    .sectionTitle{margin-bottom:14px}
+    .sectionTitle h2{margin:0; font-size:24px; color:var(--green-900)}
+    .sectionTitle p{margin:6px 0 0; opacity:.80; font-weight:700}
+    .card{
+      border-radius:var(--radius);
+      padding:18px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(31,58,46,.10);
+      box-shadow:var(--shadow);
+    }
+    .split{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; align-items:stretch}
+    .photo{
+      border-radius:var(--radius);
+      min-height:320px;
+      background:
+        radial-gradient(900px 300px at 20% 20%, rgba(138,106,61,.20), transparent 60%),
+        linear-gradient(180deg, rgba(31,58,46,.10), rgba(31,58,46,.05)),
+        linear-gradient(135deg, rgba(47,93,70,.14), rgba(138,106,61,.12)),
+        var(--story-photo);
+      border:1px solid rgba(31,58,46,.10);
+      box-shadow:var(--shadow);
+    }
+    .qualityPhoto{
+      border-radius:var(--radius);
+      min-height:320px;
+      background:
+        radial-gradient(900px 300px at 80% 10%, rgba(138,106,61,.18), transparent 60%),
+        linear-gradient(180deg, rgba(31,58,46,.10), rgba(31,58,46,.05)),
+        linear-gradient(135deg, rgba(47,93,70,.14), rgba(138,106,61,.12)),
+        var(--quality-photo);
+      border:1px solid rgba(31,58,46,.10);
+      box-shadow:var(--shadow);
+    }
+    .quote{
+      margin-top:14px;
+      border-radius:18px;
+      padding:14px 14px;
+      background:linear-gradient(135deg, rgba(47,93,70,.10), rgba(138,106,61,.10));
+      border:1px solid rgba(31,58,46,.12);
+      font-weight:900;
+      color:var(--green-900);
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(31,58,46,.12);
+      background:rgba(246,242,232,.70);
+      font-size:12px; font-weight:900;
+      opacity:.92;
+    }
+
+    /* Company info */
+    .infoGrid{display:grid; gap:14px; grid-template-columns:1fr 1fr; margin-top:14px}
+    .infoTable{width:100%; border-collapse:separate; border-spacing:0}
+    .infoTable th{width:120px; text-align:left; padding:10px 10px; font-size:12px; color:rgba(27,27,27,.70); border-bottom:1px solid rgba(31,58,46,.08)}
+    .infoTable td{padding:10px 10px; border-bottom:1px solid rgba(31,58,46,.08)}
+    .infoTable a{text-decoration:none}
+    .infoTable a:hover{text-decoration:underline; text-underline-offset:4px}
+
+    /* Philosophy grid */
+    .grid3{display:grid; gap:14px; grid-template-columns:repeat(3,1fr)}
+    .card h3{margin:0 0 6px; font-size:16px; color:var(--green-900)}
+    .card p{margin:0; font-size:14px; opacity:.92}
+
+    /* Items table */
+    .tableWrap{overflow:auto; border-radius:16px; border:1px solid rgba(31,58,46,.10); background:rgba(255,255,255,.70)}
+    table.itemsTable{width:100%; border-collapse:separate; border-spacing:0; min-width:900px}
+    .itemsTable thead th{
+      position:sticky; top:0; z-index:1;
+      background:rgba(246,242,232,.95);
+      color:var(--green-900);
+      font-size:12px;
+      letter-spacing:.02em;
+      text-align:left;
+      padding:12px 12px;
+      border-bottom:1px solid rgba(31,58,46,.12);
+      font-weight:900;
+    }
+    .itemsTable tbody td{
+      padding:12px 12px;
+      border-bottom:1px solid rgba(31,58,46,.08);
+      vertical-align:top;
+      font-size:14px;
+    }
+    .itemsTable tbody tr:hover{background:rgba(47,93,70,.06)}
+    .itemsTable .subcell{font-size:12px; opacity:.78; margin-top:4px}
+    .pill{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:6px 10px; border-radius:999px;
+      font-weight:900; font-size:12px;
+      border:1px solid rgba(31,58,46,.18);
+      background:rgba(47,93,70,.10);
+      color:var(--green-900);
+      white-space:nowrap;
+    }
+    .pill.alt{background:rgba(138,106,61,.14); border-color:rgba(138,106,61,.28)}
+    .pill.conv{background:rgba(27,27,27,.04); border-color:rgba(27,27,27,.18); color:rgba(27,27,27,.78)}
+    .months{display:grid; grid-template-columns:repeat(12, 1fr); gap:4px; min-width:360px}
+    .m{
+      height:22px; border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:11px;
+      border:1px solid rgba(31,58,46,.12);
+      background:rgba(255,255,255,.65);
+      color:rgba(27,27,27,.55);
+    }
+    .m.on{background:rgba(47,93,70,.14); border-color:rgba(47,93,70,.30); color:var(--green-900)}
+
+    /* Flow */
+    .flowSplit{display:grid; gap:16px; grid-template-columns:1.12fr .88fr; align-items:stretch}
+    .steps{display:grid; gap:10px}
+    .step{display:flex; gap:12px; align-items:flex-start; padding:14px; border-radius:18px; border:1px solid rgba(31,58,46,.10); background:rgba(255,255,255,.68)}
+    .badge{width:30px; height:30px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:900; color:white; background:linear-gradient(135deg, rgba(47,93,70,.95), rgba(31,58,46,.95))}
+
+    /* Footer */
+    footer{padding:26px 0 30px; border-top:1px solid rgba(31,58,46,.08); background:rgba(246,242,232,.55)}
+    .foot{display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap; align-items:flex-end}
+    .muted{opacity:.75; font-weight:700; font-size:12px}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+      .heroMedia{min-height:300px}
+      .flowSplit{grid-template-columns:1fr}
+      .links{justify-content:flex-start; gap:12px; font-size:13px}
+      h1{font-size:30px}
+      .infoGrid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <div class="brand" aria-label="サイト名">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandName">株式会社鳥取こだわり野菜の会</div>
+      </div>
+
+      <nav class="links" aria-label="サイトメニュー">
+        <a href="#about">私たちについて</a>
+        <a href="#philosophy">理念</a>
+        <a href="#items">品目</a>
+        <a href="#flow">お取引</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="heroGrid">
+        <div class="heroCopy">
+          <div class="kicker"><span class="dot" aria-hidden="true"></span>地域循環型農業をつなぐ、流通の力</div>
+          <h1>鳥取のこだわりを、都市へ。<br>そして、未来のまちへ。</h1>
+          <p class="lead">
+            私たちは“生産”ではなく、“生産された野菜を流通させること”を中心に、つくる人と食べる人の間に循環をつくります。
+            畑の背景が伝わる流通を通して、持続可能な食と暮らしの循環を広げます。
+          </p>
+          <div class="ctaRow">
+            <a class="btn primary" href="#items">取り扱い品目を見る</a>
+            <a class="btn" href="#contact">まず相談する</a>
+          </div>
+          <div style="margin-top:10px;font-size:12px;opacity:.78;font-weight:800">
+            ※ メールは非公開のため、お電話・FAXにてご連絡ください。
+          </div>
+        </div>
+
+        <div class="heroMedia" aria-label="畑・産地の写真（仮）">
+          <div class="heroBadge">畑・産地（写真差し替え可）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>私たちについて</h2>
+        <p>流通で、地域の未来を動かす。</p>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <h3>会社概要</h3>
+          <p>
+            株式会社鳥取こだわり野菜の会は、鳥取の生産者が丁寧に育てた野菜を、都市の食卓へまっすぐにつなぐ流通会社です。
+            私たちの役割は、単に野菜を「運ぶ」ことではありません。畑で積み重ねられた手間と工夫、つくり手の想い、
+            そして土地の背景まで含めて、価値として「伝わる形」に整えて届けることです。
+          </p>
+          <p style="margin-top:10px">
+            有機JASや特別栽培など、環境に配慮した取り組みは、作る側だけの努力では続きません。
+            きちんと評価され、選ばれ、次の挑戦につながっていく——その“循環”をつくるのが、私たち流通の仕事だと考えています。
+          </p>
+          <p style="margin-top:10px">
+            生産者と伴走しながら、規格・鮮度・温度管理・情報整理を丁寧に行い、都市部の小売・外食・給食など、用途に合わせた提案へ。
+            鳥取のこだわりが、日々の食卓で無理なく選ばれる仕組みを整えます。
+          </p>
+
+          <div class="quote">私たちは、野菜を“運ぶ”のではなく、“つなぐ”。</div>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap; margin-top:12px">
+            <span class="tag"><span class="dot" aria-hidden="true"></span>生産者の想い</span>
+            <span class="tag"><span class="dot" aria-hidden="true"></span>都市の共感</span>
+            <span class="tag"><span class="dot" aria-hidden="true"></span>地域循環</span>
+            <span class="tag"><span class="dot" aria-hidden="true"></span>品質・鮮度</span>
+          </div>
+
+          <div style="margin-top:14px">
+            <b style="color:var(--green-900)">私たちが大切にしていること</b>
+            <ul style="margin:8px 0 0; padding-left:18px; font-size:14px; opacity:.92">
+              <li>畑の背景が説明できる野菜だけを扱う（ストーリーと信頼）</li>
+              <li>鮮度・温度・規格を整え、取引先が使いやすい状態で届ける（実務の安心）</li>
+              <li>生産者が継続できる価格・数量の設計を一緒に考える（持続可能性）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="photo" aria-label="生産者・手元の写真（仮）"></div>
+      </div>
+
+      <div class="infoGrid">
+        <div class="card">
+          <h3>会社情報</h3>
+          <table class="infoTable" aria-label="会社情報">
+            <tr><th>会社名</th><td>株式会社鳥取こだわり野菜の会</td></tr>
+            <tr><th>所在地</th><td>〒680-0941 鳥取県鳥取市湖山町北4丁目215番地</td></tr>
+            <tr><th>TEL</th><td><a href="tel:0857307744">0857-30-7744</a></td></tr>
+            <tr><th>FAX</th><td><a href="tel:0857280064">0857-28-0064</a></td></tr>
+            <tr><th>設立</th><td>2016/07/13</td></tr>
+            <tr><th>代表者</th><td>小松雅朗</td></tr>
+          </table>
+          <div style="margin-top:10px; font-size:12px; opacity:.78">
+            ※ メールは非公開のため、お電話・FAXにてご連絡ください。
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>事業内容</h3>
+          <ul style="margin:8px 0 0; padding-left:18px; font-size:14px; opacity:.92">
+            <li>有機JAS・特別栽培・慣行を含む農産物の仕入れ・卸売（B2B）</li>
+            <li>出荷調整（規格提案・選別・数量調整）と、鮮度を守る温度・品質管理</li>
+            <li>納品形態の提案（店舗・外食・給食など用途別）と、物流・納品の調整</li>
+            <li>産地連携（計画出荷の相談、品質基準づくり、販路情報のフィードバック）</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="philosophy">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>理念</h2>
+        <p>地域循環型農業を支える流通へ。</p>
+      </div>
+
+      <div class="card" style="margin-bottom:14px">
+        <p style="margin:0; font-size:14px; opacity:.94">
+          私たちは、地域循環型農業を支える流通業者として、自然と共生しながら地域の豊かさを未来へつなぎます。
+          生産者のこだわりを正しく伝え、都市の消費者が安心して選べる仕組みを整えることで、
+          鳥取から「持続可能な食と暮らしの循環」を広げていきます。
+        </p>
+      </div>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>生産者の想いを届ける</h3>
+          <p>畑の声を聞き、作り手のこだわりをそのまま伝える。背景が伝わる流通を大切にします。</p>
+        </div>
+        <div class="card">
+          <h3>環境にやさしい流通</h3>
+          <p>包装・輸送・販売のすべてで環境負荷を抑え、地球にも地域にもやさしい流れをつくります。</p>
+        </div>
+        <div class="card">
+          <h3>地域循環の輪を広げる</h3>
+          <p>農業と流通、そして消費を結び、地域の中でお金・人・想いがめぐる仕組みを築きます。</p>
+        </div>
+        <div class="card">
+          <h3>都市との共感の橋渡し</h3>
+          <p>環境や健康を大切にする都市部の人々へ、鳥取の自然の恵みを誠実に届けます。</p>
+        </div>
+        <div class="card">
+          <h3>持続可能な未来への貢献</h3>
+          <p>農業を支える流通が、まちを支える力になる。その信念で循環型社会の実現に貢献します。</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <h3 style="margin:0 0 8px; color:var(--green-900); font-size:16px">ビジョン</h3>
+        <ul style="margin:0; padding-left:18px; font-size:14px; opacity:.92">
+          <li>地域循環型農業を“流通の力”で広げ、まちの活力を生む。</li>
+          <li>鳥取の生産者の想いを、都市の食卓までまっすぐに届ける。</li>
+          <li>食べることが、地域と地球を守る行動になる社会をつくる。</li>
+          <li>「流通」という仕組みを通して、地方の希望を再び動かす。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="items">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>取り扱い品目</h2>
+        <p>産地／認証区分／出荷可能月（目安）</p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div>
+            <span class="tag"><span class="dot" aria-hidden="true"></span>一覧は随時更新</span>
+            <div style="margin-top:8px;font-size:12px;opacity:.82">
+              ※ 出荷可能月は天候・作柄・在庫状況により変動します。詳細はお問い合わせください。
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#contact" style="padding:10px 12px">この内容で相談する</a>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="tableWrap" role="region" aria-label="取り扱い品目一覧" tabindex="0">
+          <table class="itemsTable">
+            <thead>
+              <tr>
+                <th style="width:260px">品目</th>
+                <th style="width:180px">産地</th>
+                <th style="width:180px">認証・区分</th>
+                <th>出荷可能月</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- ▼仮データ（あとで差し替え） -->
+              <tr>
+                <td>
+                  <b>有機白ねぎ</b>
+                  <div class="subcell">規格例：2L〜M／束・箱 など（要相談）</div>
+                </td>
+                <td>鳥取県</td>
+                <td><span class="pill">有機JAS</span></td>
+                <td>
+                  <div class="months" aria-label="10月〜5月（例）">
+                    <span class="m on">1</span><span class="m on">2</span><span class="m on">3</span><span class="m on">4</span><span class="m on">5</span><span class="m">6</span><span class="m">7</span><span class="m">8</span><span class="m">9</span><span class="m on">10</span><span class="m on">11</span><span class="m on">12</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b>ブロッコリー</b>
+                  <div class="subcell">カット・規格指定などご相談可</div>
+                </td>
+                <td>鳥取県</td>
+                <td><span class="pill alt">特別栽培</span></td>
+                <td>
+                  <div class="months" aria-label="11月〜3月（例）">
+                    <span class="m on">1</span><span class="m on">2</span><span class="m on">3</span><span class="m">4</span><span class="m">5</span><span class="m">6</span><span class="m">7</span><span class="m">8</span><span class="m">9</span><span class="m">10</span><span class="m on">11</span><span class="m on">12</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <b>【追加品目】</b>
+                  <div class="subcell">ここに説明（規格・用途など）</div>
+                </td>
+                <td>【産地】</td>
+                <td><span class="pill conv">慣行</span></td>
+                <td>
+                  <div class="months" aria-label="月を選択（例）">
+                    <span class="m">1</span><span class="m">2</span><span class="m">3</span><span class="m">4</span><span class="m">5</span><span class="m">6</span><span class="m">7</span><span class="m">8</span><span class="m">9</span><span class="m">10</span><span class="m">11</span><span class="m">12</span>
+                  </div>
+                </td>
+              </tr>
+              <!-- ▲仮データここまで -->
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:12px; font-size:12px; opacity:.78">
+          ※ 実データが揃ったら、月のハイライト（on/off）を品目ごとに調整します。
+          <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
+            <span class="pill">有機JAS</span>
+            <span class="pill alt">特別栽培</span>
+            <span class="pill conv">慣行</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="flow">
+    <div class="container">
+      <div class="sectionTitle">
+        <h2>お取引の流れ</h2>
+        <p>まずは小さく始められます。</p>
+      </div>
+
+      <div class="flowSplit">
+        <div class="steps">
+          <div class="step">
+            <div class="badge">1</div>
+            <div><strong>お問い合わせ</strong><br>用途（小売/外食/給食）、数量、納品頻度などを簡単にお聞きします。</div>
+          </div>
+          <div class="step">
+            <div class="badge">2</div>
+            <div><strong>ご提案</strong><br>品目・規格・価格帯・代替案を含めて、無理のない形をご提案します。</div>
+          </div>
+          <div class="step">
+            <div class="badge">3</div>
+            <div><strong>お試し納品 → 定期化</strong><br>品質基準や運用をすり合わせ、安定供給の仕組みにしていきます。</div>
+          </div>
+          <div class="card">
+            <h3 style="margin:0 0 8px">写真の揃え方（おすすめ）</h3>
+            <p style="margin:0; font-size:14px; opacity:.92">
+              ①畑・産地（TOP）／②生産者の手元（ABOUT）／③出荷・品質管理（ここ）
+              の3枚を同じトーンで揃えると、一気に「信頼感」が出ます。
+            </p>
+          </div>
+        </div>
+
+        <div class="qualityPhoto" aria-label="出荷・品質管理の写真（仮）"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="card">
+        <div class="sectionTitle" style="margin-bottom:10px">
+          <h2 style="margin:0; font-size:22px">お問い合わせ</h2>
+          <p style="margin:6px 0 0">仕入れのご相談・サンプル・規格の相談など、お気軽にご連絡ください。</p>
+        </div>
+
+        <div class="ctaRow">
+          <a class="btn primary" href="tel:0857307744">電話する（0857-30-7744）</a>
+          <a class="btn" href="tel:0857280064">FAX（0857-28-0064）</a>
+          <a class="btn" href="#" onclick="alert('フォームは準備中です。お電話またはFAXでご連絡ください。');return false;">フォーム（準備中）</a>
+        </div>
+
+        <div style="margin-top:12px; font-size:12px; opacity:.82; font-weight:800">
+          株式会社鳥取こだわり野菜の会｜〒680-0941 鳥取県鳥取市湖山町北4丁目215番地｜TEL 0857-30-7744｜FAX 0857-28-0064｜設立 2016/07/13｜代表 小松雅朗
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div style="font-weight:900; color:var(--green-900)">株式会社鳥取こだわり野菜の会</div>
+        <div class="muted" style="margin-top:6px">〒680-0941 鳥取県鳥取市湖山町北4丁目215番地｜TEL 0857-30-7744｜FAX 0857-28-0064</div>
+      </div>
+      <div class="muted">© 株式会社鳥取こだわり野菜の会</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
